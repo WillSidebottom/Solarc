@@ -26,6 +26,7 @@
 /////////////////////////////////////////////
 
 #include <stdio.h>
+#include <time.h>
 #include "spa.h"  //include the SPA header file
 
 int main (int argc, char *argv[])
@@ -34,24 +35,30 @@ int main (int argc, char *argv[])
     int result;
     float min, sec;
 
+    //added by Will. Testing with current date time info
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+
+    printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+
     //enter required input values into SPA structure
 
-    spa.year          = 2003;
-    spa.month         = 10;
-    spa.day           = 17;
-    spa.hour          = 12;
-    spa.minute        = 30;
-    spa.second        = 30;
-    spa.timezone      = -7.0;
-    spa.delta_ut1     = 0;
-    spa.delta_t       = 67;
-    spa.longitude     = -105.1786;
-    spa.latitude      = 39.742476;
-    spa.elevation     = 1830.14;
-    spa.pressure      = 820;
-    spa.temperature   = 11;
-    spa.slope         = 30;
-    spa.azm_rotation  = -10;
+    spa.year          = tm.tm_year + 1900;
+    spa.month         = tm.tm_mon + 1;
+    spa.day           = tm.tm_mday;
+    spa.hour          = tm.tm_hour;
+    spa.minute        = tm.tm_min;
+    spa.second        = tm.tm_sec;
+    spa.timezone      = -5.0;
+    spa.delta_ut1     = -0.32883;       //can only be observed daily
+    spa.delta_t       = 67;             //can only be observed daily
+    spa.longitude     = -84.2807;       //retrieved online
+    spa.latitude      = 30.4383;        //retrieved online
+    spa.elevation     = 61.87;          //retrieved online
+    spa.pressure      = 820;            //should this matter?
+    spa.temperature   = 11;             //should this matter?
+    spa.slope         = 30;             //leaving this the same
+    spa.azm_rotation  = -10;            //leaving the same
     spa.atmos_refract = 0.5667;
     spa.function      = SPA_ALL;
 
