@@ -29,7 +29,7 @@
 #include <time.h>
 #include "spa.h"  //include the SPA header file
 
-int main (int argc, char *argv[])
+int main ()
 {
     spa_data spa;  //declare the SPA structure
     int result;
