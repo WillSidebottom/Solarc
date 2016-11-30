@@ -10,14 +10,15 @@ CC = gcc
 #  -Wextra enables extra warnings found
 #  -Werror make all warnings into errors
 CFLAGS = -std=c99 -Wall -Wextra -Werror -I -lm
-
+# Additional libraries, guess you have to name it twice?
+LIBS = -lm
 # The build target executable
 TARGET = spa_tester
 
 all: $(TARGET)
 
 $(TARGET): spa.o $(TARGET).o
-	$(CC) $(CFLAGS) -o $(TARGET) spa.c $(TARGET).c -lm
+	$(CC) $(CFLAGS) -o $(TARGET) spa.c $(TARGET).c $(LIBS)
 
 clean:
 	$(RM) $(TARGET) *.o
